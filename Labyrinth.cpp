@@ -37,7 +37,7 @@ Labyrinth:: Labyrinth(string _fileName)
                     tabSquare[i][j] -> upperSquare = tabSquare[i-1][j];
                     tabSquare[i][j] -> lowerSquare = tabSquare[i+1][j];
                     tabSquare[i][j] -> leftSquare = tabSquare[i][j+1];
-                    tabSquare[i][j] -> upperSquare = tabSquare[i-1][j-1];
+                    tabSquare[i][j] -> rightSquare = tabSquare[i-1][j-1];
                     }
                 }
             }
