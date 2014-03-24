@@ -19,9 +19,9 @@ void ConsoleMenu::Run()
 
 bool ConsoleMenu::manageChoice(char _input)
     {
-    bool choix;
+    bool choix = true;
     Robot robot;
-    Labyrinth labyrinth;
+    Labyrinth* labyrinth = new Labyrinth("labyrinthe.txt");
     switch (_input)
         {
         case 'Q':
@@ -31,12 +31,13 @@ bool ConsoleMenu::manageChoice(char _input)
 
         case 'V':
         case 'v' :
-
+            cout << labyrinth->ToString();
+            system("pause");
             break;
 
         case 'S':
         case's':
-
+            robot.Explore(labyrinth);
             break;
         }
     return choix;
@@ -50,7 +51,7 @@ char ConsoleMenu::readValidInput(char  _tabValidInputs[], int _nbElements)
     displayMenu();
 
     do {
-        getline(std::cin, input);
+        getline(cin, input);
         for (int i = 0; i < _nbElements; i++)
             {
             if (_tabValidInputs[i] == input[0])
@@ -71,6 +72,7 @@ void ConsoleMenu::displayMenu()
     cout << "+--------------Labyrinth-------------+\n";
     cout << "+------------------------------------+\n";
     cout << "+------------------------------------+\n";
-    cout << "pour crypter appuyer sur e \n";
+    cout << "pour afficher le labyrinth appuyer sur v \n";
+    cout << "pour obtenir le meilleur itineraire du labyrinth appuyer sur s \n";
     cout << "pour quitter appuyer sur q \n";
     }

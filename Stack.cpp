@@ -3,36 +3,54 @@
 using namespace std;
 
 Stack::Stack()
-{
-}
+    {
+    first = NULL;
+    }
 
 Stack::~Stack()
-{
-}
+    {
+    while (first != NULL)
+        {
+        Pop ( );
+        }
+    }
 
 void Stack::Pop()
-{
+    {
+    square* contenu = NULL ;
+    if (first != NULL)
+        {  
+        contenu = first->element; 
+        Cell* noeudAEnlever = first;  
+        first = first->next ;  
+        delete noeudAEnlever ; }
+    };
 
-};
+void Stack::Push(square* _element)
+    {
+    Cell* nouveauNoeud = new Cell(_element,first);
+    first = nouveauNoeud ;
+    };
 
-void Stack::Push(square* entree_element)
-{
-
-};
-	
 square* Stack::Top()
-{
-
-};
-	
+    {
+    return first->element;
+    };
 
 bool Stack::IsEmpty()
-{
+    {
+    return (Top() == NULL);
+    };
 
-};
-	
+string Stack::ToStringReverse()
+    {
+    string stringReverse;
+    stringReverse += "(";
+    stringReverse += Top()->x;
+    stringReverse += ",";
+    stringReverse += Top()->y;
+    stringReverse += ")";
+    Pop();
 
-string ToStringReverse()
-{
-
-};
+    return stringReverse;
+    };

@@ -1,4 +1,6 @@
 #include "Robot.h"
+
+
 using namespace std;
 
  Robot:: Robot()
@@ -9,12 +11,12 @@ using namespace std;
 {
 }
 
- void Robot::Explore(Labyrinth* entree_labyrinth)
+ void Robot::Explore(Labyrinth* _labyrinth)
 {
 
-};
+}
 
 string Robot::getSolution()
 {
-
-};
+return pathStartToExit -> ToStringReverse();
+}

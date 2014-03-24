@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Cell.h"
 using namespace std;
@@ -8,7 +9,7 @@ public:
 	Stack();
 	~Stack();
 	void Pop();
-	void Push(square* entree_element);
+	void Push(square* _element);
 	square* Top();
 	bool IsEmpty();
 	string ToStringReverse();
@@ -16,11 +17,3 @@ public:
 private:
 	Cell* first;
 };
-
-Stack::Stack()
-{
-}
-
-Stack::~Stack()
-{
-}

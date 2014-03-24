@@ -1,8 +1,9 @@
+#pragma once
 #include <iostream>
 using namespace std;
 
-struct square
-{
+struct square 
+    {
 public:
 
 	int x;
@@ -13,7 +14,5 @@ public:
 	square* rightSquare;
 	square* leftSquare;
 	square* lowerSquare;
-
-private:
 
 };

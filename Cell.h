@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Square.cpp"
 using namespace std;
@@ -9,6 +10,6 @@ public:
 	square* element;
 	Cell* next;
 
-	Cell(square* entree_element, Cell* entree_next);
+	Cell(square* _element, Cell* _next);
 private:
 };

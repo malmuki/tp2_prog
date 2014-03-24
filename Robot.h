@@ -1,5 +1,8 @@
+#pragma once
 #include "Stack.h"
 #include "Labyrinth.h"
+#include <string>
+
 using namespace std;
 
 class Robot
@@ -13,11 +16,3 @@ private:
 	Stack* pathStartToExit;
 	square* currentSquare;
 };
-
- Robot:: Robot()
-{
-}
-
- Robot::~ Robot()
-{
-}

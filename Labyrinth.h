@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "square.cpp"
 using namespace std;
@@ -5,7 +6,7 @@ using namespace std;
 class Labyrinth
 {
 public:
-	 Labyrinth(string entree_fileName);
+	 Labyrinth(string _fileName);
 	~ Labyrinth();
 	string ToString();
 	square* GetStartSquare();
@@ -15,11 +16,3 @@ private:
 	square* tabSquare[20][20];
 
 };
-
- Labyrinth:: Labyrinth(string entree_fileName)
-{
-}
-
- Labyrinth::~ Labyrinth()
-{
-}
