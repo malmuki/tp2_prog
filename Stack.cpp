@@ -34,8 +34,13 @@ void Stack::Push(square* _element)
 
 square* Stack::Top()
     {
-
-    return first->element;
+    if (first != NULL)
+        {
+        return first->element;
+        }else
+            return NULL;
+        {
+            }
     };
 
 bool Stack::IsEmpty()

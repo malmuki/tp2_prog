@@ -4,15 +4,14 @@
 using namespace std;
 
 class Labyrinth
-{
-public:
-	 Labyrinth(string _fileName);
-	~ Labyrinth();
-	string ToString();
-	square* GetStartSquare();
+    {
+    public:
+        Labyrinth(string _fileName);
+        ~ Labyrinth();
+        string ToString();
+        square* GetStartSquare();
 
-private:
-	square* startSquare;
-	square* tabSquare[20][20];
-
-};
+    private:
+        square* startSquare;
+        square* tabSquare[20][20];
+    };

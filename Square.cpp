@@ -2,17 +2,16 @@
 #include <iostream>
 using namespace std;
 
-struct square 
+struct square
     {
-public:
+    public:
 
-	int x;
-	int y;
-	char value;
-	bool visited;
-	square* upperSquare;
-	square* rightSquare;
-	square* leftSquare;
-	square* lowerSquare;
-
-};
+        int x;
+        int y;
+        char value;
+        bool visited;
+        square* upperSquare;
+        square* rightSquare;
+        square* leftSquare;
+        square* lowerSquare;
+    };

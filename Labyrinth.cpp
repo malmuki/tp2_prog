@@ -15,7 +15,7 @@ Labyrinth:: Labyrinth(string _fileName)
             {
             string temp; 
             getline(input,temp);
-               
+
             for(int j =0;j<=19;j++)
                 {
                 tabSquare[i][j] = new square;
@@ -24,7 +24,7 @@ Labyrinth:: Labyrinth(string _fileName)
                 tabSquare[i][j]->x = j;
                 tabSquare[i][j]->y = i;
 
-                 tabSquare[i][j]->value = temp[j] ;
+                tabSquare[i][j]->value = temp[j] ;
                 if( tabSquare[i][j]->value == 'D' )
                     {
                     startSquare =  tabSquare[i][j];
@@ -39,8 +39,8 @@ Labyrinth:: Labyrinth(string _fileName)
                     {
                     tabSquare[i][j] -> upperSquare = tabSquare[i-1][j];
                     tabSquare[i][j] -> lowerSquare = tabSquare[i+1][j];
-                    tabSquare[i][j] -> leftSquare = tabSquare[i][j+1];
-                    tabSquare[i][j] -> upperSquare = tabSquare[i-1][j-1];
+                    tabSquare[i][j] -> leftSquare = tabSquare[i][j-1];
+                    tabSquare[i][j] -> rightSquare = tabSquare[i][j+1];
                     }
                 }
             }
