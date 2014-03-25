@@ -38,6 +38,7 @@ bool ConsoleMenu::manageChoice(char _input)
         case 'S':
         case's':
             robot.Explore(labyrinth);
+            robot.getSolution();
             break;
         }
     return choix;
