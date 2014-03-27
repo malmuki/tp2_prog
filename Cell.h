@@ -6,10 +6,10 @@ using namespace std;
 class Cell
     {
     public:
-        square* element;
+        Square* element;
         Cell* next;
 
-        Cell(square* _element, Cell* _next);
+        Cell(Square* _element, Cell* _next);
     private:
 
     };

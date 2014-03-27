@@ -3,62 +3,62 @@
 using namespace std;
 
 Stack::Stack()
-    {
-    first = NULL;
-    }
+{
+	first = NULL;
+}
 
 Stack::~Stack()
-    {
-    while (first != NULL)
-        {
-        Pop ( );
-        }
-    }
+{
+	while (first != NULL)
+	{
+		Pop ( );
+	}
+}
 
 void Stack::Pop()
-    {
-    square* contenu = NULL ;
-    if (first != NULL)
-        {
-        contenu = first->element;
-        Cell* noeudAEnlever = first;
-        first = first->next ;
-        delete noeudAEnlever ; }
-    };
+{
+	Square* contenu = NULL ;
+	if (first != NULL)
+	{
+		contenu = first->element;
+		Cell* noeudAEnlever = first;
+		first = first->next ;
+		delete noeudAEnlever ; }
+};
 
-void Stack::Push(square* _element)
-    {
-    Cell *nouveauNoeud= new Cell(_element,first);
-    first = nouveauNoeud ;
-    };
+void Stack::Push(Square* _element)
+{
+	Cell *nouveauNoeud= new Cell(_element,first);
+	first = nouveauNoeud ;
+};
 
-square* Stack::Top()
-    {
-    if (first != NULL)
-        {
-        return first->element;
-        }else
-            return NULL;
-        {
-            }
-    };
+Square* Stack::Top()
+{
+	if (first != NULL)
+	{
+		return first->element;
+	}else
+		return NULL;
+	{
+	}
+};
 
 bool Stack::IsEmpty()
-    {
-    return (Top() == NULL);
-    };
+{
+	return (Top() == NULL);
+};
 
 string Stack::ToStringReverse()
-    {
-    string stringReverse;
-    while (!IsEmpty())
-        {
-        stringReverse += "(";
-        stringReverse += Top()->x;
-        stringReverse += ",";
-        stringReverse += Top()->y;
-        stringReverse += ")";
-        Pop();
-        }
-    return stringReverse;
-    };
+{
+	string stringReverse;
+	while (!IsEmpty())
+	{
+		stringReverse += "(";
+		stringReverse += Top()->x;
+		stringReverse += ",";
+		stringReverse += Top()->y;
+		stringReverse += ")";
+		Pop();
+	}
+	return stringReverse;
+};

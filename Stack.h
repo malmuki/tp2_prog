@@ -4,16 +4,16 @@
 using namespace std;
 
 class Stack
-    {
-    public:
-        Stack();
-        ~Stack();
-        void Pop();
-        void Push(square* _element);
-        square* Top();
-        bool IsEmpty();
-        string ToStringReverse();
+{
+public:
+	Stack();
+	~Stack();
+	void Pop();
+	void Push(Square* _element);
+	Square* Top();
+	bool IsEmpty();
+	string ToStringReverse();
 
-    private:
-        Cell* first;
-    };
+private:
+	Cell* first;
+};

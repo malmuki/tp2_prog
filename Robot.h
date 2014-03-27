@@ -6,14 +6,14 @@
 using namespace std;
 
 class Robot
-    {
-    public:
-        Robot();
-        ~ Robot();
-        Robot(const Robot& _copie);
-        void Explore(Labyrinth* entree_labyrinth);
-        string getSolution();
-    private:
-        Stack* pathStartToExit;
-        square* currentSquare;
-    };
+{
+public:
+	Robot();
+	~ Robot();
+	Robot(const Robot& _copie);
+	void Explore(Labyrinth* entree_labyrinth);
+	string getSolution();
+private:
+	Stack* pathStartToExit;
+	Square* currentSquare;
+};

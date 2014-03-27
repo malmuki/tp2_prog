@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-struct square
+struct Square
     {
     public:
 
@@ -10,8 +10,8 @@ struct square
         int y;
         char value;
         bool visited;
-        square* upperSquare;
-        square* rightSquare;
-        square* leftSquare;
-        square* lowerSquare;
+        Square* upperSquare;
+        Square* rightSquare;
+        Square* leftSquare;
+		Square* lowerSquare;
     };

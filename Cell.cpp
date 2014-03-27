@@ -2,7 +2,7 @@
 #include "Cell.h"
 using namespace std;
 
-Cell::Cell(square* _element, Cell* _next)
+Cell::Cell(Square* _element, Cell* _next)
     {
     element = _element;
     next = _next; 
