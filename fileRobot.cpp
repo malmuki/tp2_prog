@@ -30,7 +30,6 @@ void FileRobot::AddRobot (Robot* _robot)
 
 	dernier = nouveauNoeud;
 }
-
 Robot* FileRobot::retirer()
 {
 	Robot* robot = NULL;
@@ -49,3 +48,7 @@ Robot* FileRobot::retirer()
 	}
 	return robot;
 }
+Robot* FileRobot::Top()
+    {
+    return premier->contenu;
+    }

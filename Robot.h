@@ -1,9 +1,8 @@
 #pragma once
+#include <string>
 #include "Stack.h"
 #include "Labyrinth.h"
-#include <string>
 
-using namespace std;
 
 class Robot
 {

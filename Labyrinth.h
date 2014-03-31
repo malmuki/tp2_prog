@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include "square.cpp"
-using namespace std;
 
 class Labyrinth
 {

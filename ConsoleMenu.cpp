@@ -3,6 +3,7 @@
 #include "ConsoleMenu.h"
 #include "Robot.h"
 #include "Labyrinth.h"
+#include "FileRobot.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ void ConsoleMenu::Run()
 bool ConsoleMenu::manageChoice(char _input)
     {
     bool choix = true;
-    Robot robot;
+    Robot* robot = new Robot;
     Labyrinth* labyrinth = new Labyrinth("labyrinthe.txt");
     switch (_input)
         {
@@ -37,8 +38,14 @@ bool ConsoleMenu::manageChoice(char _input)
 
         case 'S':
         case's':
-            robot.Explore(labyrinth);
-            robot.getSolution();
+            FileRobot* file = new FileRobot();
+            file->AddRobot(robot);
+            while(file->Top()->currentSquare->value != 'S')
+            {
+
+            }
+            robot->Explore(labyrinth);
+            robot->getSolution();
             break;
         }
     return choix;

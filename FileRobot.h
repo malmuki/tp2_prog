@@ -1,22 +1,21 @@
+#pragma once
 #include "Robot.h"
 
 class FileRobot
 {
 public:
 	FileRobot();
-	~FileRobot();
-	void AddRobot(Robot* robot);
-	Robot* retirer();
+	~FileRobot();	
+    Robot* retirer();
+    Robot* Top();
+    void AddRobot(Robot* robot);
 
 private:
 	class NoeudRobot
 	{
 	public:
-		NoeudRobot();
 		NoeudRobot* suivant;
 		Robot* contenu;
-
-	private:
 
 	};
 
