@@ -38,7 +38,7 @@ bool ConsoleMenu::manageChoice(char _input)
 
         case 'S':
         case's':
-            robot->Explore(labyrinth);
+            cout << robot->Explore(labyrinth) << "nb deplacement" << endl;
             cout << robot->getSolution();
             system("pause");
             break;

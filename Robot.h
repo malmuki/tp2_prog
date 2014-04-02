@@ -16,4 +16,8 @@ public:
 private:
 	Stack* pathStartToExit;
 	Square* currentSquare;
+	Robot* leftRobot;
+	Robot* rightRobot;
+	Robot* upperRobot;
+	Robot* lowerRobot;
 };
