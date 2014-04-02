@@ -10,8 +10,9 @@ public:
 	Robot();
 	~ Robot();
 	Robot(const Robot& _copie);
-	void Explore(Labyrinth* entree_labyrinth);
+	int Explore(Labyrinth* entree_labyrinth);
 	string getSolution();
+    Square* getCurrentSquare();
 private:
 	Stack* pathStartToExit;
 	Square* currentSquare;

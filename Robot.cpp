@@ -9,26 +9,48 @@ Robot:: Robot()
 
 Robot:: ~Robot()
     {
+    while (!pathStartToExit->IsEmpty())
+        {
+        pathStartToExit->Pop();
+        }
     }
 
 Robot:: Robot(const Robot& _copie)
     {
+    currentSquare = _copie.currentSquare;
 
+    pathStartToExit = new Stack(*_copie.pathStartToExit);
     }
 
-void Robot::Explore(Labyrinth* _labyrinth)
+int Robot::Explore(Labyrinth* _labyrinth)
     {
-    bool intersection = false;
     int cheminsPossibles = 0;
+    int plusPetitChemin = 0;
     bool leftValid = false;
     bool rightValid = false;
     bool upperValid = false;
     bool lowerValid = false;
-    currentSquare = _labyrinth->GetStartSquare();
-    pathStartToExit->Push(currentSquare);
-
-    while(intersection = false)
+    Robot* leftRobot =  NULL;
+    Robot* rightRobot = NULL;
+    Robot* upperRobot = NULL;
+    Robot* lowerRobot = NULL;
+    if (currentSquare == NULL)
         {
+        currentSquare = _labyrinth->GetStartSquare();
+        }
+    do
+        {
+        leftValid = false;
+        rightValid = false;
+        upperValid = false;
+        lowerValid = false;
+        leftRobot =  NULL;
+        rightRobot = NULL;
+        upperRobot = NULL;
+        lowerRobot = NULL;
+        cheminsPossibles = 0;
+        currentSquare->visited = true;
+        pathStartToExit->Push(currentSquare);
         if(currentSquare->leftSquare->value != 'X' && currentSquare->leftSquare->visited == false)
             {
             cheminsPossibles++;
@@ -55,51 +77,67 @@ void Robot::Explore(Labyrinth* _labyrinth)
 
         if(cheminsPossibles>1)
             {
-            for(int i = 0; i < cheminsPossibles-1; i++)
+            if(leftValid)
                 {
-               // Robot* nouveauRobot = new Robot(*this);
-                //nouveauRobot.explore(_labyrinth);
+                leftRobot = new Robot(*this);
+                leftRobot->currentSquare = currentSquare->leftSquare;
+                plusPetitChemin = leftRobot->Explore(_labyrinth);
                 }
-            //delete this;
+
+            if(upperValid)
+                {
+                upperRobot = new Robot(*this);
+                upperRobot->currentSquare = currentSquare->upperSquare;
+                if (plusPetitChemin < upperRobot->Explore(_labyrinth))
+                {
+                
+                }                   
+                }           
+            if(lowerValid)
+                {
+                lowerRobot = new Robot(*this);
+                lowerRobot->currentSquare = currentSquare->lowerSquare;
+                lowerRobot->Explore(_labyrinth);
+                }
+            if(rightValid)
+                {
+                rightRobot = new Robot(*this);
+                rightRobot->currentSquare = currentSquare->rightSquare;
+                rightRobot->Explore(_labyrinth);
+                }            
             }
         else if(cheminsPossibles==1)
             {
-            if(leftValid == true)
+            if(leftValid)
                 {
-                currentSquare->visited = true;
                 currentSquare = currentSquare->leftSquare;
-                pathStartToExit->Push(currentSquare);
                 }
 
-            if(upperValid == true)
+            if(upperValid)
                 {
-                currentSquare->visited = true;
                 currentSquare = currentSquare->upperSquare;
-                pathStartToExit->Push(currentSquare);
                 }
 
-            if(lowerValid == true)
+            if(lowerValid)
                 {
-                currentSquare->visited = true;
                 currentSquare = currentSquare->lowerSquare;
-                pathStartToExit->Push(currentSquare);
                 }
 
-            if(rightValid == true)
+            if(rightValid)
                 {
-                currentSquare->visited = true;
                 currentSquare = currentSquare->rightSquare;
-                pathStartToExit->Push(currentSquare);
                 }
             }
-        else
-            {
-            delete this;
-            }
-        }
+        }while (cheminsPossibles == 1 && currentSquare->value == 'S');
+        return plusPetitChemin;
     }
 
 string Robot::getSolution()
     {
     return pathStartToExit -> ToStringReverse();
+    }
+
+Square* Robot::getCurrentSquare()
+    {
+    return currentSquare;
     }

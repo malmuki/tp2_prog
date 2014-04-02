@@ -38,14 +38,9 @@ bool ConsoleMenu::manageChoice(char _input)
 
         case 'S':
         case's':
-            FileRobot* file = new FileRobot();
-            file->AddRobot(robot);
-            while(file->Top()->currentSquare->value != 'S')
-            {
-
-            }
             robot->Explore(labyrinth);
-            robot->getSolution();
+            cout << robot->getSolution();
+            system("pause");
             break;
         }
     return choix;

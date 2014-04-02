@@ -1,13 +1,13 @@
 #pragma once
 #include <iostream>
 #include "Cell.h"
-using namespace std;
 
 class Stack
 {
 public:
 	Stack();
 	~Stack();
+    Stack(const Stack& _copie);
 	void Pop();
 	void Push(Square* _element);
 	Square* Top();

@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Square.cpp"
-using namespace std;
+
 
 class Cell
     {
