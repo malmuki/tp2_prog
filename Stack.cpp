@@ -57,8 +57,7 @@ string Stack::ToStringReverse()
 	Stack temp;
 	while (this->first != NULL)
 	{
-		Cell* cell = new Cell(this->Top(),this->first);
-		temp.Push(cell->element);
+		temp.Push(this->Top());
 		this->Pop();
 	}
 	while (!temp.IsEmpty())
