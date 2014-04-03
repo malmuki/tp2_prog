@@ -7,7 +7,6 @@ class Stack
 public:
 	Stack();
 	~Stack();
-    Stack(const Stack& _copie);
 	void Pop();
 	void Push(Square* _element);
 	Square* Top();

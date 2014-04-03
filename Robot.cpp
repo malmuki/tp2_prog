@@ -22,8 +22,7 @@ Robot:: ~Robot()
 Robot:: Robot(const Robot& _copie)
     {
     currentSquare = _copie.currentSquare;
-
-    pathStartToExit = new Stack(*_copie.pathStartToExit);
+    pathStartToExit = new Stack;
     }
 
 int Robot::Explore(Labyrinth* _labyrinth)
@@ -41,15 +40,12 @@ int Robot::Explore(Labyrinth* _labyrinth)
         }
     do
         {
+        pathStartToExit->Push(currentSquare);
         int plusPetitChemin = -1;
         leftValid = false;
         rightValid = false;
         upperValid = false;
         lowerValid = false;
-        leftRobot =  NULL;
-        rightRobot = NULL;
-        upperRobot = NULL;
-        lowerRobot = NULL;
         cheminsPossibles = 0;
         currentSquare->visited = true;
 
@@ -82,7 +78,6 @@ int Robot::Explore(Labyrinth* _labyrinth)
             int temp;
             if(leftValid)
                 {
-                pathStartToExit->Push(currentSquare);
                 leftRobot = new Robot(*this);
                 leftRobot->currentSquare = currentSquare->leftSquare;
                 temp = leftRobot->Explore(_labyrinth);
@@ -95,7 +90,6 @@ int Robot::Explore(Labyrinth* _labyrinth)
 
             if(upperValid)
                 {
-                pathStartToExit->Push(currentSquare);
                 upperRobot = new Robot(*this);
                 upperRobot->currentSquare = currentSquare->upperSquare;
                 temp = upperRobot->Explore(_labyrinth);
@@ -105,23 +99,8 @@ int Robot::Explore(Labyrinth* _labyrinth)
                     meilleur = 2;
                     }
                 }
-
-            if(rightValid)
-                {
-                pathStartToExit->Push(currentSquare);
-                rightRobot = new Robot(*this);
-                rightRobot->currentSquare = currentSquare->rightSquare;
-                temp = rightRobot->Explore(_labyrinth);
-                if(plusPetitChemin < temp && temp != -1)
-                    {
-                    plusPetitChemin = temp;
-                    meilleur = 4;
-                    }
-                }
-
             if(lowerValid)
                 {
-                pathStartToExit->Push(currentSquare);
                 lowerRobot = new Robot(*this);
                 lowerRobot->currentSquare = currentSquare->lowerSquare;
                 temp = lowerRobot->Explore(_labyrinth);
@@ -131,6 +110,17 @@ int Robot::Explore(Labyrinth* _labyrinth)
                     meilleur = 3;
                     }
                 }
+            if(rightValid)
+                {
+                rightRobot = new Robot(*this);
+                rightRobot->currentSquare = currentSquare->rightSquare;
+                temp = rightRobot->Explore(_labyrinth);
+                if(plusPetitChemin < temp && temp != -1)
+                    {
+                    plusPetitChemin = temp;
+                    meilleur = 4;
+                    }
+                }           
             }
         else if(cheminsPossibles==1)
             {
@@ -138,28 +128,24 @@ int Robot::Explore(Labyrinth* _labyrinth)
                 {
                 currentSquare = currentSquare->leftSquare;
                 plusPetitChemin = 1;
-                pathStartToExit->Push(currentSquare);
                 }
 
             if(upperValid)
                 {
                 currentSquare = currentSquare->upperSquare;
                 plusPetitChemin = 1;
-                pathStartToExit->Push(currentSquare);
                 }
 
             if(lowerValid)
                 {
                 currentSquare = currentSquare->lowerSquare;
                 plusPetitChemin = 1;
-                pathStartToExit->Push(currentSquare);
                 }
 
             if(rightValid)
                 {
                 currentSquare = currentSquare->rightSquare;
                 plusPetitChemin = 1;
-                pathStartToExit->Push(currentSquare);
                 }
             }
         else
@@ -169,45 +155,56 @@ int Robot::Explore(Labyrinth* _labyrinth)
                 return -1;
                 }
             }
+        Stack inverse;
         switch (meilleur)
             {
             case 0:
                 //do nothing
                 break;
             case 1:
-                delete pathStartToExit;
-                pathStartToExit = new Stack(*leftRobot->pathStartToExit);
-                while (leftRobot->pathStartToExit->Top() != currentSquare)
+                leftRobot->pathStartToExit->Push(currentSquare);
+                while (leftRobot->pathStartToExit->Top() != NULL)
                     {
+                    pathStartToExit->Push(leftRobot->pathStartToExit->Top());
                     leftRobot->pathStartToExit->Top()->visited =false;
                     leftRobot->pathStartToExit->Pop();
                     }
                 break;
             case 2:
-                delete pathStartToExit;
-                pathStartToExit = new Stack(*upperRobot->pathStartToExit);
-                while (upperRobot->pathStartToExit->Top() != currentSquare)
+                upperRobot->pathStartToExit->Push(currentSquare);
+                while (upperRobot->pathStartToExit->Top() != NULL)
                     {
+                    pathStartToExit->Push(upperRobot->pathStartToExit->Top());
                     upperRobot->pathStartToExit->Top()->visited =false;
                     upperRobot->pathStartToExit->Pop();
                     }
                 break;
             case 3:
-                delete pathStartToExit;
-                pathStartToExit = new Stack(*lowerRobot->pathStartToExit);
-                while (lowerRobot->pathStartToExit->Top() != currentSquare)
+                lowerRobot->pathStartToExit->Push(currentSquare);
+                while (!lowerRobot->pathStartToExit->IsEmpty())
                     {
-                    lowerRobot->pathStartToExit->Top()->visited =false;
+                    inverse.Push(lowerRobot->pathStartToExit->Top());
                     lowerRobot->pathStartToExit->Pop();
+                    }
+                while (!inverse.IsEmpty())
+                    {
+                    pathStartToExit->Push(inverse.Top());
+                    inverse.Top()->visited =false;
+                    inverse.Pop();
                     }
                 break;
             case 4:
-                delete pathStartToExit;
-                pathStartToExit = new Stack(*rightRobot->pathStartToExit);
-                while (leftRobot->pathStartToExit->Top() != currentSquare)
+                rightRobot->pathStartToExit->Push(currentSquare);
+                while (!rightRobot->pathStartToExit->IsEmpty())
                     {
-                    rightRobot->pathStartToExit->Top()->visited =false;
+                    inverse.Push(rightRobot->pathStartToExit->Top());
                     rightRobot->pathStartToExit->Pop();
+                    }
+                while (!inverse.IsEmpty())
+                    {
+                    pathStartToExit->Push(inverse.Top());
+                    inverse.Top()->visited =false;
+                    inverse.Pop();
                     }
                 break;
             }

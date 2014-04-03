@@ -16,26 +16,6 @@ Stack::~Stack()
 	}
 }
 
-Stack::Stack(const Stack& _copie)
-{
-	Stack copie ;
-	copie = _copie;
-	Stack temp;
-	while (copie.first != NULL)
-	{
-		Cell* cell = new Cell(copie.Top(),copie.first);
-		temp.Push(cell->element);
-		copie.Pop();
-	}
-
-	while (temp.first != NULL)
-	{
-		Cell* cell = new Cell(temp.Top(),temp.first);
-		Push(cell->element);
-		temp.Pop();
-	}
-}
-
 void Stack::Pop()
 {
 	Square* contenu = NULL ;
