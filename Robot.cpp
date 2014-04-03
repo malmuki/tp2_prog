@@ -90,6 +90,7 @@ int Robot::Explore(Labyrinth* _labyrinth)
                     plusPetitChemin = temp;
                     meilleur = 1;
                 }
+                delete leftRobot;
             }
 
             if(upperValid)
@@ -103,6 +104,7 @@ int Robot::Explore(Labyrinth* _labyrinth)
                     plusPetitChemin = temp;
                     meilleur = 2;
                 }
+                delete upperRobot;
             }
 
             if(lowerValid)
@@ -116,6 +118,7 @@ int Robot::Explore(Labyrinth* _labyrinth)
                     plusPetitChemin = temp;
                     meilleur = 3;
                 }
+                delete lowerRobot;
              }
 
             if(rightValid)
@@ -130,6 +133,7 @@ int Robot::Explore(Labyrinth* _labyrinth)
                     plusPetitChemin = temp;
                     meilleur = 4;
                 }
+                delete rightRobot;
             }           
         }
 
@@ -139,24 +143,40 @@ int Robot::Explore(Labyrinth* _labyrinth)
             {
                 currentSquare = currentSquare->leftSquare;
                 plusPetitChemin = 1;
+                if (currentSquare->value == 'S')
+                {
+                meilleur = 1;
+                }
             }
 
             if(upperValid)
             {
                 currentSquare = currentSquare->upperSquare;
                 plusPetitChemin = 1;
+                if (currentSquare->value == 'S')
+                    {
+                    meilleur = 1;
+                    }
             }
 
             if(lowerValid)
             {
                 currentSquare = currentSquare->lowerSquare;
                 plusPetitChemin = 1;
+                if (currentSquare->value == 'S')
+                    {
+                    meilleur = 1;
+                    }
             }
 
             if(rightValid)
             {
                 currentSquare = currentSquare->rightSquare;
                 plusPetitChemin = 1;
+                if (currentSquare->value == 'S')
+                    {
+                    meilleur = 1;
+                    }
             }
         }
 
@@ -173,23 +193,13 @@ int Robot::Explore(Labyrinth* _labyrinth)
         switch (meilleur)
         {
             case 1:
-
-                cout << getSolution();
-
-                break;
             case 2:
-
-                cout << getSolution();
-
-                break;
             case 3:
-           /*     lowerRobot->pathStartToExit->Push(currentSquare);*/
-
-                cout << getSolution();
-
-                break;
             case 4:
-      /*          rightRobot->pathStartToExit->Push(currentSquare);*/
+                cout << getSolution();
+                break;
+            
+               /* rightRobot->pathStartToExit->Push(currentSquare);*/
 
                /* while (!rightRobot->pathStartToExit->IsEmpty())
                 {
@@ -203,10 +213,6 @@ int Robot::Explore(Labyrinth* _labyrinth)
                     inverse.Top()->visited =false;
                     inverse.Pop();
                 }*/
-
-				cout << getSolution();
-
-                break;
 
 			default:
 				 //do nothing

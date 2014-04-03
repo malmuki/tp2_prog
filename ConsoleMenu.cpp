@@ -3,7 +3,6 @@
 #include "ConsoleMenu.h"
 #include "Robot.h"
 #include "Labyrinth.h"
-#include "FileRobot.h"
 
 using namespace std;
 
