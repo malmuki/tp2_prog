@@ -145,7 +145,7 @@ int Robot::Explore(Labyrinth* _labyrinth)
                 plusPetitChemin = 1;
                 if (currentSquare->value == 'S')
                 {
-                meilleur = 1;
+                meilleur = 5;
                 }
             }
 
@@ -155,7 +155,7 @@ int Robot::Explore(Labyrinth* _labyrinth)
                 plusPetitChemin = 1;
                 if (currentSquare->value == 'S')
                     {
-                    meilleur = 1;
+                    meilleur = 5;
                     }
             }
 
@@ -165,7 +165,7 @@ int Robot::Explore(Labyrinth* _labyrinth)
                 plusPetitChemin = 1;
                 if (currentSquare->value == 'S')
                     {
-                    meilleur = 1;
+                    meilleur = 5;
                     }
             }
 
@@ -175,7 +175,7 @@ int Robot::Explore(Labyrinth* _labyrinth)
                 plusPetitChemin = 1;
                 if (currentSquare->value == 'S')
                     {
-                    meilleur = 1;
+                    meilleur = 5;
                     }
             }
         }
@@ -188,31 +188,27 @@ int Robot::Explore(Labyrinth* _labyrinth)
             }
         }
 
-        Stack inverse;
-
         switch (meilleur)
         {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-                cout << getSolution();
+            case 1: // left
+                cout << leftRobot->printsolutions();
                 break;
-            
-               /* rightRobot->pathStartToExit->Push(currentSquare);*/
-
-               /* while (!rightRobot->pathStartToExit->IsEmpty())
+            case 2: //upper
+                cout << upperRobot->printsolutions();
+                break;
+            case 3: //lower
+                cout << lowerRobot->printsolutions();
+                break;
+            case 4: //right
+                cout << rightRobot->printsolutions();
+                break;
+            case 5: //ligne droite
+                if (currentSquare->value == 'S')
                 {
-                    inverse.Push(rightRobot->pathStartToExit->Top());
-                    rightRobot->pathStartToExit->Pop();
+                cout << printsolutions();
                 }
-
-                while (!inverse.IsEmpty())
-                {
-                    pathStartToExit->Push(inverse.Top());
-                    inverse.Top()->visited =false;
-                    inverse.Pop();
-                }*/
+                
+                break;
 
 			default:
 				 //do nothing
@@ -237,4 +233,9 @@ string Robot::getSolution()
 Square* Robot::getCurrentSquare()
 {
     return currentSquare;
+}
+
+string Robot::printsolutions()
+{
+ return getSolution();
 }
