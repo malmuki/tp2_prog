@@ -14,7 +14,6 @@ public:
 	string getSolution();
     Square* getCurrentSquare();
 private:
-    string printsolutions();
 	Stack* pathStartToExit;
 	Square* currentSquare;
 	Robot* leftRobot;

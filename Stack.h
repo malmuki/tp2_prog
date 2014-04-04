@@ -6,6 +6,7 @@ class Stack
 {
 public:
 	Stack();
+    Stack(const Stack& _copie);
 	~Stack();
 	void Pop();
 	void Push(Square* _element);

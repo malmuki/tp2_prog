@@ -8,6 +8,27 @@ Stack::Stack()
 	first = NULL;
 }
 
+Stack::Stack(const Stack& _copie)
+    {
+    Stack copie ;
+    copie = _copie;
+    Stack temp;
+    while (copie.first != NULL)
+        {
+        Cell* cell = new Cell(copie.Top(),copie.first);
+        temp.Push(cell->element);
+        copie.Pop();
+        }
+
+    while (temp.first != NULL)
+        {
+        Cell* cell = new Cell(temp.Top(),temp.first);
+        Push(cell->element);
+        temp.Pop();
+        }
+    }
+
+
 Stack::~Stack()
 {
 	while (first != NULL)
@@ -54,11 +75,12 @@ string Stack::ToStringReverse()
 {
 	string stringReverse;
 	ostringstream oss;
+    Stack* copie = new Stack(*this);
 	Stack temp;
-	while (this->first != NULL)
+	while (copie->first != NULL)
 	{
-		temp.Push(this->Top());
-		this->Pop();
+		temp.Push(copie->Top());
+		copie->Pop();
 	}
 	while (!temp.IsEmpty())
 	{
